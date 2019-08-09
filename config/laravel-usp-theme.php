@@ -1,25 +1,23 @@
 <?php
 
 return [
-    'title'=> 'USPdev',
+    'title'=> 'USPdev / ' . config('app.name'),
     'dashboard_url' => '/',
     'logout_method' => 'GET',
     'logout_url' => 'logout',
     'login_url' => 'login',
     'menu' => [
         [
-            'text' => 'Item 1',
-            'url'  => '/item1',
+            'text' => 'Processos',
+            'url'  => '/processos',
         ],
         [
-            'text' => 'Item 2',
-            'url'  => '/item2',
-            'can'  => '',
+            'text' => 'Convocações',
+            'url'  => '/convocacoes',
         ],
         [
-            'text' => 'Item 3',
-            'url'  => '/item3',
-            'can'  => 'admin',
+            'text' => 'Calendário',
+            'url'  => '/calendario',
         ],
     ]
 ];
