@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Instanciainscricao extends Model
+class Edital extends Model
 {
     public function inscricao() {
         return $this->belongsTo('App\Models\Inscricao');
