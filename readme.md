@@ -22,6 +22,7 @@ cp .env.example .env
 ```
 #### Altere o arquivo .env com as devidas credenciais
 ```bash
+php artisan key:generate
 php artisan migrate
 php artisan serve
 ```
