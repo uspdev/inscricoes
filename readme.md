@@ -19,6 +19,10 @@ composer install
 php artisan vendor:publish --provider="Uspdev\UspTheme\ServiceProvider" --tag=assets --force
 php artisan vendor:publish --provider="Uspdev\UspTheme\ServiceProvider" --tag=config
 cp .env.example .env
+```
+#### Altere o arquivo .env com as devidas credenciais
+```bash
+php artisan migrate
 php artisan serve
 ```
 
