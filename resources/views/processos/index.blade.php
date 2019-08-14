@@ -4,6 +4,11 @@
 
 @section('content')
     Processos seletivos
+    <ul>
+        @foreach ($processos as $processo)
+            <li>{{ $processo->titulo }}</li>
+        @endforeach
+    </ul>
 @endsection
 
 

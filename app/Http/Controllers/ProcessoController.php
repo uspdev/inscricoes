@@ -14,7 +14,9 @@ class ProcessoController extends Controller
      */
     public function index()
     {
-        //
+        $processos = Processo::where('status', 'Publicado')->orderBy('inicio', 'desc')->get();
+
+        return view('processos.index', compact('processos'));
     }
 
     /**
