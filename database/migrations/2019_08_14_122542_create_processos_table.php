@@ -21,7 +21,7 @@ class CreateProcessosTable extends Migration
             $table->dateTime('fim');
             $table->string('niveis');
             $table->string('status');
-            $table->dateTime('publicacao');
+            $table->dateTime('publicacao')->nullable();
             $table->timestamps();
         });
     }
