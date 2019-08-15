@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use Auth;
+use App\User;
 use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -46,8 +47,27 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
-        $user = Socialite::driver('senhaunica')->user();
+        $userSenhaUnica = Socialite::driver('senhaunica')->user();
         // aqui vc pode inserir o usuário no banco de dados local, fazer o login etc.
+
+        # busca o usuário local
+        $user = User::find($userSenhaUnica->codpes);
+
+		# se o usuário local NÃO EXISTE, cadastra
+        if (is_null($user)) {
+            $user = new User;
+            $user->id = $userSenhaUnica->codpes;
+            $user->email = $userSenhaUnica->email;
+            $user->name = $userSenhaUnica->nompes;
+            $user->save();
+        } else {
+            # se o usuário EXISTE local
+            # atualiza os dados
+            $user->id = $userSenhaUnica->codpes;
+            $user->email = $userSenhaUnica->email;
+            $user->name = $userSenhaUnica->nompes;
+            $user->save(); 
+        }
 
         # faz login
         Auth::login($user, true);
