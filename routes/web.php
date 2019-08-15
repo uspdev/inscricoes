@@ -16,3 +16,6 @@ Route::get('/', function () {
 });
 
 Route::resource('/processos', 'ProcessoController');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
