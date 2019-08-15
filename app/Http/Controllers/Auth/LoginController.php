@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
@@ -46,5 +48,16 @@ class LoginController extends Controller
     {
         $user = Socialite::driver('senhaunica')->user();
         // aqui vc pode inserir o usuário no banco de dados local, fazer o login etc.
+
+        # faz login
+        Auth::login($user, true);
+
+        # redireciona
+        return redirect('/');  
+    }
+
+    public function logout() {
+        Auth::logout();
+        return redirect('/');
     }
 }

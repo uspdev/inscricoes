@@ -25,5 +25,5 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 // Autenticação Senha Única USP
-Route::get('login/senhaunica', 'Auth\LoginController@redirectToProvider');
+Route::get('/login/senhaunica', 'Auth\LoginController@redirectToProvider');
 Route::get('/callback', 'Auth\LoginController@handleProviderCallback');
