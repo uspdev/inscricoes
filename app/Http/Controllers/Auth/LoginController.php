@@ -36,4 +36,15 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+ 
+    public function redirectToProvider()
+    {
+        return Socialite::driver('senhaunica')->redirect();
+    }
+
+    public function handleProviderCallback()
+    {
+        $user = Socialite::driver('senhaunica')->user();
+        // aqui vc pode inserir o usuário no banco de dados local, fazer o login etc.
+    }
 }
