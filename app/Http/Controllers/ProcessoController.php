@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Processo;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProcessoController extends Controller
 {
@@ -19,7 +20,7 @@ class ProcessoController extends Controller
      */
     public function index()
     {
-        $processos = Processo::where('status', 'Publicado')->orderBy('inicio', 'desc')->get();
+        $processos = Processo::all();
 
         return view('processos.index', compact('processos'));
     }
@@ -42,9 +43,19 @@ class ProcessoController extends Controller
      */
     public function store(Request $request)
     {
-        $processos = array();
+        $processos = Processo::all();
 
-        dd($request);
+        $processo = new Processo;
+        $processo->titulo       = $request->titulo;
+        $processo->codcur       = $request->codcur;
+        $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
+        $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
+        $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        $processo->status       = $request->status;
+        if (!empty($request->publicacao)) {
+            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
+        } 
+        $processo->save();
 
         return view('processos.index', compact('request', 'processos'));
     }
