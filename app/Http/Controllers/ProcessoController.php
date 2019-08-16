@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class ProcessoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index']);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -26,7 +31,7 @@ class ProcessoController extends Controller
      */
     public function create()
     {
-        //
+        return view('processos.create');
     }
 
     /**
@@ -37,7 +42,11 @@ class ProcessoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $processos = array();
+
+        dd($request);
+
+        return view('processos.index', compact('request', 'processos'));
     }
 
     /**
