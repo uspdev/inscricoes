@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Processo;
+use App\Programa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Uspdev\Replicado\Connection; 
-use Uspdev\Replicado\Posgraduacao; 
 
 class ProcessoController extends Controller
 {
@@ -34,7 +33,7 @@ class ProcessoController extends Controller
      */
     public function create()
     {
-        $programas = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
 
         return view('processos.create', compact('programas'));
     }

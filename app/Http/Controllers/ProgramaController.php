@@ -3,10 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Programa;
+use App\Processo;
 use Illuminate\Http\Request;
+use Uspdev\Replicado\Connection; 
+use Uspdev\Replicado\Posgraduacao; 
 
 class ProgramaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -24,7 +32,9 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        //
+        $programas = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        
+        return view('programas.create', compact('programas'));
     }
 
     /**
@@ -34,8 +44,17 @@ class ProgramaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {       
+        $programa = new Programa;
+        $programa->codcur       = $request->codcur;
+        $programa->nomcur       = $request->nomcur;
+        $programa->sglcur       = $request->sglcur;
+        $programa->save();
+
+        $programas = Programa::all();
+        $processos = Processo::all();
+
+        return view('processos.index', compact('request', 'programas', 'processos'));
     }
 
     /**

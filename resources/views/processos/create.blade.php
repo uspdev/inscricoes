@@ -11,21 +11,21 @@
         <label for="titulo" class="col-form-label col1 px-3">Título</label>
         <div class="w-75">
             <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título do Processo Seletivo" required
-                aria-describedby="tituloHelp" value="">
-                <small id="tituloHelp" class="form-text text-muted">
-                    Título deve ser único? Que tal compor o título padrão com: sigla da unidade - sigla do programa - ano corrente +1?</small>
+                value="ECA-PPGAC 2020">
         </div>
     </div>
     <div class="form-group row">
         <label for="codcur" class="col-form-label col1 px-3">Programa</label>
         <div class="col1">
-            <select class="form-control form-control-sm" id="codcur" name="codcur" required
-                aria-describedby="codcurHelp">
+            <select class="form-control form-control-sm" id="codcur" name="codcur" required>
                 @foreach ($programas as $programa)
-                <option value="{{ $programa['codcur'] }}">{{ $programa['nomcur'] }}</option>
+                <option value="{{ $programa['codcur'] }}">{{ $programa['sglcur'] }} - {{ $programa['nomcur'] }}</option>
                 @endforeach
             </select>
-            <small id="codcurHelp" class="form-text text-muted">Trazer do replicado.</small>
+        </div>
+        <div class="col1 px-3">
+            <button type="button" class="btn btn-info btn-sm" title="Novo Programa de Pós-Graduação" 
+                onclick="location.href='/programas/create';">Novo Programa</button>
         </div>
     </div>
     <div class="form-group row px-3">
@@ -77,7 +77,7 @@
         </fieldset>
     </div>   
     <div class="form-group row px-3">
-    <label for="inicio" class="col-form-label col1">Publicação</label>
+        <label for="inicio" class="col-form-label col1">Publicação</label>
         <div class="col1 form-inline px-3">
             <input type="text" class="form-control form-control-sm datepicker mr-3" id="publicacao" name="publicacao" placeholder="dd/mm/aaaa">
             <input type="text" class="form-control form-control-sm" id="publicacaoTime" name="publicacaoTime" placeholder="hh:mm">

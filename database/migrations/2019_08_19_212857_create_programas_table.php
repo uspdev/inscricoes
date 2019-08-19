@@ -16,6 +16,7 @@ class CreateProgramasTable extends Migration
         Schema::create('programas', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('codcur');
+            $table->string('nomcur');
             $table->string('sglcur')->nullable();
             $table->timestamps();
         });
