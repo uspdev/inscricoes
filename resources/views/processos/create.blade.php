@@ -11,8 +11,9 @@
         <label for="titulo" class="col-form-label col1 px-3">Título</label>
         <div class="w-75">
             <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título do Processo Seletivo" required
-                aria-describedby="tituloHelp">
-                <small id="tituloHelp" class="form-text text-muted">Título deve ser único?</small>
+                aria-describedby="tituloHelp" value="">
+                <small id="tituloHelp" class="form-text text-muted">
+                    Título deve ser único? Que tal compor o título padrão com: sigla da unidade - sigla do programa - ano corrente +1?</small>
         </div>
     </div>
     <div class="form-group row">
@@ -20,8 +21,9 @@
         <div class="col1">
             <select class="form-control form-control-sm" id="codcur" name="codcur" required
                 aria-describedby="codcurHelp">
-                <option value="27005">PPGAC</option>
-                <option value="27007">PPGAV</option>
+                @foreach ($programas as $programa)
+                <option value="{{ $programa['codcur'] }}">{{ $programa['nomcur'] }}</option>
+                @endforeach
             </select>
             <small id="codcurHelp" class="form-text text-muted">Trazer do replicado.</small>
         </div>
