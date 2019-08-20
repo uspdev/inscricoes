@@ -10,7 +10,7 @@
     onclick="location.href='/processos/create';">Novo</button>
 @endauth
 
-<div class=" border border-info rounded p-3 mt-3">
+<div class="border border-info rounded p-3 mt-3">
     <table class="table table-striped table-bordered dataTable mt-3">
         <thead>
             <tr>
@@ -18,6 +18,7 @@
                 <th scope="col">Título</th>
                 <th scope="col">Status</th>
                 <th scope="col">Publicação</th>
+                <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -29,6 +30,16 @@
                 <td>{{ $processo->status }}</td>
                 <td>{{ Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y') }} 
                     às {{ Carbon\Carbon::parse($processo->publicacao)->format('H:i') }}</td> 
+                <td>
+                    <button type="button" class="btn btn-info btn-sm" title="Ver" onclick="location.href='/processos/{{ $processo->id }}';">
+                        <i class="material-icons md-18">visibility</i></button>                    
+                    @auth 
+                    <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/processos/{{ $processo->id }}';">
+                        <i class="material-icons md-18">create</i></button>
+                    <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="location.href='/processos/{{ $processo->id }}';">
+                        <i class="material-icons md-18">remove_circle_outline</i></button>
+                    @endauth
+                </td>
             </tr>
             @else
                 @auth 

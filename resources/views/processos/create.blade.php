@@ -10,8 +10,7 @@
     <div class="form-group row">
         <label for="titulo" class="col-form-label col1 px-3">Título</label>
         <div class="w-75">
-            <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título do Processo Seletivo" required
-                value="ECA-PPGAC 2020">
+            <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título do Processo Seletivo" required>
         </div>
     </div>
     <div class="form-group row">
@@ -25,20 +24,24 @@
         </div>
         <div class="col1 px-3">
             <button type="button" class="btn btn-info btn-sm" title="Novo Programa de Pós-Graduação" 
-                onclick="location.href='/programas/create';">Novo Programa</button>
+                onclick="location.href='/programas/create';"><i class="material-icons md-18">add_circle_outline</i></button></button>
         </div>
     </div>
     <div class="form-group row px-3">
         <fieldset class="row">
             <label for="inicio" class="col-form-label col1 px-3">Inscrições de</label>
             <div class="col1 form-inline">
-                <input type="text" class="form-control form-control-sm datepicker mr-3" id="inicio" name="inicio" placeholder="dd/mm/aaaa" required>
-                <input type="text" class="form-control form-control-sm" id="inicioTime" name="inicioTime" placeholder="hh:mm" required>
+                <input type="text" class="form-control form-control-sm datepicker mr-3" id="inicio" name="inicio" placeholder="dd/mm/aaaa" 
+                    pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" required>
+                <input type="text" class="form-control form-control-sm" id="inicioTime" name="inicioTime" placeholder="hh:mm" 
+                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required>
             </div>
             <label for="fim" class="col-form-label col2 px-3">à</label>
             <div class="col2 form-inline">
-                <input type="text" class="form-control form-control-sm datepicker mr-3" id="fim" name="fim" placeholder="dd/mm/aaaa" required> 
-                <input type="text" class="form-control form-control-sm" id="fimTime" name="fimTime" placeholder="hh:mm" required>
+                <input type="text" class="form-control form-control-sm datepicker mr-3" id="fim" name="fim" placeholder="dd/mm/aaaa" 
+                    pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" required> 
+                <input type="text" class="form-control form-control-sm" id="fimTime" name="fimTime" placeholder="hh:mm" 
+                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required>
             </div>
         </fieldset>
     </div>
@@ -79,8 +82,10 @@
     <div class="form-group row px-3">
         <label for="inicio" class="col-form-label col1">Publicação</label>
         <div class="col1 form-inline px-3">
-            <input type="text" class="form-control form-control-sm datepicker mr-3" id="publicacao" name="publicacao" placeholder="dd/mm/aaaa">
-            <input type="text" class="form-control form-control-sm" id="publicacaoTime" name="publicacaoTime" placeholder="hh:mm">
+            <input type="text" class="form-control form-control-sm datepicker mr-3" id="publicacao" name="publicacao" placeholder="dd/mm/aaaa" 
+                    pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$">
+            <input type="text" class="form-control form-control-sm" id="publicacaoTime" name="publicacaoTime" placeholder="hh:mm" 
+                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]">
         </div>
     </div>    
     <div class="form-group row p-3">

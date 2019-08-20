@@ -32,9 +32,10 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        $programas = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
         
-        return view('programas.create', compact('programas'));
+        return view('programas.create', compact('programasReplicado', 'programas'));
     }
 
     /**

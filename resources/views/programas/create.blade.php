@@ -11,8 +11,8 @@
         <label for="codcur" class="col-form-label col1 px-3">Programa</label>
         <div class="col1">
             <select class="form-control form-control-sm" id="codcur" name="codcur" required>
-                @foreach ($programas as $programa)
-                <option value="{{ $programa['codcur'] }}">{{ $programa['nomcur'] }}</option>
+                @foreach ($programasReplicado as $programaReplicado)
+                <option value="{{ $programaReplicado['codcur'] }}">{{ $programaReplicado['nomcur'] }}</option>
                 @endforeach
             </select>
         </div>
@@ -33,6 +33,35 @@
         <button type="submit" class="btn btn-info" title="Salvar Novo Programa">Salvar</button>
     </div>
 </form>
+
+<div class="border border-info rounded p-3 mt-3">
+    <table class="table table-striped table-bordered dataTable mt-3">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Sigla</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach ($programas as $programa)
+            <tr>
+                <th scope="row">{{ $programa->id }}</th>
+                <td>{{ $programa->sglcur }}</td>
+                <td>{{ $programa->nomcur }}</td>
+                <td>
+                    <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/prograamas/{{ $programa->id }}';">
+                        <i class="material-icons md-18">create</i></button>
+                    <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="location.href='/prograamas/{{ $programa->id }}';">
+                        <i class="material-icons md-18">remove_circle_outline</i></button>                
+                </td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
+</div>
+
 @endsection
 
 @section('javascripts_bottom')
@@ -47,5 +76,4 @@
             $("#nomcur").val(selectedText);
         }); 
     </script>
-@stop
-
+@endsection
