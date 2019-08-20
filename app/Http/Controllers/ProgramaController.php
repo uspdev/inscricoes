@@ -38,7 +38,7 @@ class ProgramaController extends Controller
         return view('programas.create', compact('programasReplicado', 'programas'));
     }
 
-    /**
+    /**$programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request

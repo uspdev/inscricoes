@@ -6,7 +6,8 @@
 
 @include('flash')
 
-<h5>Alterar Programa de Pós-Graduação</h5>
+<h5>{{ App\Programa::where('codcur', $programa['codcur'])->get()[0]['sglcur'] }}
+        {{ Uspdev\Replicado\Posgraduacao::programas(config('ppgselecao.repUnd'), $programa['codcur'])[0]['nomcur'] }}</h5>
 
 <form method="POST" action="/programas/{{ $programa['id'] }}" class="border border-info rounded p-3">
     {{ csrf_field() }} 

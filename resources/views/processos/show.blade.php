@@ -6,7 +6,7 @@
 
 @include('flash')
 
-<h5>Processo seletivo {{ $processo->titulo }}</h5>
+<h5>{{ $processo->titulo }}</h5>
 
 <div class="border border-info rounded p-3 mt-3">
     <table class="table table-striped table-bordered mt-3">
@@ -31,7 +31,7 @@
             </tr>            
             <tr>
                 <th scope="col">Publicação</th>
-                <td>{{ Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y H:i') }}</td>
+                <td>{{ ($processo->publicacao !== null) ? Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y H:i') : '' }}</td>
             </tr>            
         </tbody>
     </table>

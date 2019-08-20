@@ -6,6 +6,8 @@ use App\Processo;
 use App\Programa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Uspdev\Replicado\Connection; 
+use Uspdev\Replicado\Posgraduacao; 
 
 class ProcessoController extends Controller
 {
@@ -102,7 +104,10 @@ class ProcessoController extends Controller
      */
     public function edit(Processo $processo)
     {
-        //
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
+       
+        return view('processos.edit', compact('processo', 'programas', 'programasReplicado'));
     }
 
     /**
@@ -114,7 +119,22 @@ class ProcessoController extends Controller
      */
     public function update(Request $request, Processo $processo)
     {
-        //
+        $processo->titulo       = $request->titulo;
+        $processo->codcur       = $request->codcur;
+        $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
+        $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
+        $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        $processo->status       = $request->status;
+        if (!empty($request->publicacao)) {
+            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
+        } 
+        $processo->save();
+
+        $processos = Processo::all();
+        
+        $request->session()->flash('alert-success', 'Processo Seletivo alterado com sucesso!');
+
+        return view('processos.index', compact('request', 'processos'));
     }
 
     /**
