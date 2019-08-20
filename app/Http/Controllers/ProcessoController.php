@@ -11,7 +11,7 @@ class ProcessoController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index']);
+        $this->middleware('auth')->except(['index', 'show']);
     }
     
     /**
@@ -46,8 +46,6 @@ class ProcessoController extends Controller
      */
     public function store(Request $request)
     {
-        $processos = Processo::all();
-
         $processo = new Processo;
         $processo->titulo       = $request->titulo;
         $processo->codcur       = $request->codcur;
@@ -60,6 +58,10 @@ class ProcessoController extends Controller
         } 
         $processo->save();
 
+        $processos = Processo::all();
+        
+        $request->session()->flash('alert-success', 'Processo Seletivo cadastrado com sucesso!');
+
         return view('processos.index', compact('request', 'processos'));
     }
 
@@ -71,7 +73,25 @@ class ProcessoController extends Controller
      */
     public function show(Processo $processo)
     {
-        //
+        $niveis = explode(',', $processo->niveis);
+        $arrNiveis = array();
+        foreach ($niveis as $nivel) {
+            switch ($nivel) {
+                case 'ME':
+                    array_push($arrNiveis, 'Mestrado');
+                    break;
+                case 'DO':
+                    array_push($arrNiveis, 'Doutorado');
+                    break;
+                case 'DD':
+                    array_push($arrNiveis, 'Doutorado Direto');
+                    break;    
+            }
+        }
+        
+        $niveis = implode(', ', $arrNiveis);
+        
+        return view('processos.show', compact('processo', 'niveis'));
     }
 
     /**
@@ -103,8 +123,14 @@ class ProcessoController extends Controller
      * @param  \App\Processo  $processo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Processo $processo)
+    public function destroy(Request $request, Processo $processo)
     {
-        //
+        $processo->delete();
+
+        $processos = Processo::all();
+
+        $request->session()->flash('alert-danger', 'Processo Seletivo apagado!');
+
+        return view('processos.index', compact('processos'));
     }
 }

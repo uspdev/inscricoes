@@ -55,7 +55,9 @@ class ProgramaController extends Controller
         $programas = Programa::all();
         $processos = Processo::all();
 
-        return view('processos.index', compact('request', 'programas', 'processos'));
+        $request->session()->flash('alert-success', 'Programa cadastrado com sucesso!');
+
+        return view('processos.create', compact('request', 'programas', 'processos'));
     }
 
     /**
@@ -77,7 +79,9 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
-        //
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+
+        return view('programas.edit', compact('programasReplicado', 'programa'));
     }
 
     /**
@@ -89,7 +93,17 @@ class ProgramaController extends Controller
      */
     public function update(Request $request, Programa $programa)
     {
-        //
+        $programa->codcur       = $request->codcur;
+        $programa->nomcur       = $request->nomcur;
+        $programa->sglcur       = $request->sglcur;
+        $programa->save();
+
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
+
+        $request->session()->flash('alert-success', 'Programa alterado com sucesso!');
+        
+        return view('programas.create', compact('programasReplicado', 'programas'));        
     }
 
     /**
@@ -98,8 +112,15 @@ class ProgramaController extends Controller
      * @param  \App\Programa  $programa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Programa $programa)
+    public function destroy(Request $request, Programa $programa)
     {
-        //
+        $programa->delete();
+        
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
+
+        $request->session()->flash('alert-danger', 'Programa apagado!');
+        
+        return view('programas.create', compact('programasReplicado', 'programas'));
     }
 }

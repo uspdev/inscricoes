@@ -3,6 +3,9 @@
 @section('title') {{ config('app.name') }} - {{ config('ppgselecao.sisDesc') }} @endsection
 
 @section('content')
+
+@include('flash')
+
 <h5>Novo Processo Seletivo</h5>
 
 <form method="POST" action="/processos" class="border border-info rounded p-3">

@@ -3,6 +3,9 @@
 @section('title') {{ config('app.name') }} - {{ config('ppgselecao.sisDesc') }} @endsection
 
 @section('content')
+
+@include('flash')
+
 <h5>Novo Programa de Pós-Graduação</h5>
 
 <form method="POST" action="/programas" class="border border-info rounded p-3">
@@ -51,10 +54,14 @@
                 <td>{{ $programa->sglcur }}</td>
                 <td>{{ $programa->nomcur }}</td>
                 <td>
-                    <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/prograamas/{{ $programa->id }}';">
-                        <i class="material-icons md-18">create</i></button>
-                    <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="location.href='/prograamas/{{ $programa->id }}';">
-                        <i class="material-icons md-18">remove_circle_outline</i></button>                
+                    <form method="POST" id="programa{{ $programa->id }}" action="/programas/{{ $programa->id }}">
+                        <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/programas/{{ $programa->id }}/edit';">
+                            <i class="material-icons md-18">create</i></button>
+                        {{ csrf_field() }}
+                        {{ method_field('delete') }} 
+                        <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="$('#programa{{ $programa->id }}').submit();">
+                            <i class="material-icons md-18">remove_circle_outline</i></button> 
+                    </form>
                 </td>
             </tr>
         @endforeach

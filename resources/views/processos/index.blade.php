@@ -3,6 +3,9 @@
 @section('title') {{ config('app.name') }} - {{ config('ppgselecao.sisDesc') }} @endsection
 
 @section('content')
+
+@include('flash')
+
 <h5>Processos seletivos</h5>
 
 @auth
@@ -31,13 +34,19 @@
                 <td>{{ Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y') }} 
                     às {{ Carbon\Carbon::parse($processo->publicacao)->format('H:i') }}</td> 
                 <td>
-                    <button type="button" class="btn btn-info btn-sm" title="Ver" onclick="location.href='/processos/{{ $processo->id }}';">
-                        <i class="material-icons md-18">visibility</i></button>                    
-                    @auth 
-                    <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/processos/{{ $processo->id }}';">
-                        <i class="material-icons md-18">create</i></button>
-                    <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="location.href='/processos/{{ $processo->id }}';">
-                        <i class="material-icons md-18">remove_circle_outline</i></button>
+                    @auth
+                    <form method="POST" id="processo{{ $processo->id }}" action="/processos/{{ $processo->id }}">
+                    @endauth
+                        <button type="button" class="btn btn-info btn-sm" title="Ver" onclick="location.href='/processos/{{ $processo->id }}';">
+                            <i class="material-icons md-18">visibility</i></button>                    
+                        @auth 
+                        {{ csrf_field() }}
+                        {{ method_field('delete') }}
+                        <button type="button" class="btn btn-info btn-sm" title="Alterar" onclick="location.href='/processos/{{ $processo->id }}/edit';">
+                            <i class="material-icons md-18">create</i></button>
+                        <button type="button" class="btn btn-info btn-sm" title="Apagar" onclick="$('#processo{{ $processo->id }}').submit();">
+                            <i class="material-icons md-18">remove_circle_outline</i></button>
+                    </form>
                     @endauth
                 </td>
             </tr>
