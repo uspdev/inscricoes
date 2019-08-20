@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Processo;
+use App\Programa;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Uspdev\Replicado\Connection; 
+use Uspdev\Replicado\Posgraduacao; 
 
 class ProcessoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except(['index', 'show']);
+    }
+    
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,7 @@ class ProcessoController extends Controller
      */
     public function index()
     {
-        $processos = Processo::where('status', 'Publicado')->orderBy('inicio', 'desc')->get();
+        $processos = Processo::all();
 
         return view('processos.index', compact('processos'));
     }
@@ -26,7 +35,9 @@ class ProcessoController extends Controller
      */
     public function create()
     {
-        //
+        $programas = Programa::all();
+
+        return view('processos.create', compact('programas'));
     }
 
     /**
@@ -37,7 +48,23 @@ class ProcessoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $processo = new Processo;
+        $processo->titulo       = $request->titulo;
+        $processo->codcur       = $request->codcur;
+        $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
+        $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
+        $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        $processo->status       = $request->status;
+        if (!empty($request->publicacao)) {
+            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
+        } 
+        $processo->save();
+
+        $processos = Processo::all();
+        
+        $request->session()->flash('alert-success', 'Processo Seletivo cadastrado com sucesso!');
+
+        return view('processos.index', compact('request', 'processos'));
     }
 
     /**
@@ -48,7 +75,25 @@ class ProcessoController extends Controller
      */
     public function show(Processo $processo)
     {
-        //
+        $niveis = explode(',', $processo->niveis);
+        $arrNiveis = array();
+        foreach ($niveis as $nivel) {
+            switch ($nivel) {
+                case 'ME':
+                    array_push($arrNiveis, 'Mestrado');
+                    break;
+                case 'DO':
+                    array_push($arrNiveis, 'Doutorado');
+                    break;
+                case 'DD':
+                    array_push($arrNiveis, 'Doutorado Direto');
+                    break;    
+            }
+        }
+        
+        $niveis = implode(', ', $arrNiveis);
+        
+        return view('processos.show', compact('processo', 'niveis'));
     }
 
     /**
@@ -59,7 +104,10 @@ class ProcessoController extends Controller
      */
     public function edit(Processo $processo)
     {
-        //
+        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programas = Programa::all();
+       
+        return view('processos.edit', compact('processo', 'programas', 'programasReplicado'));
     }
 
     /**
@@ -71,7 +119,22 @@ class ProcessoController extends Controller
      */
     public function update(Request $request, Processo $processo)
     {
-        //
+        $processo->titulo       = $request->titulo;
+        $processo->codcur       = $request->codcur;
+        $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
+        $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
+        $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        $processo->status       = $request->status;
+        if (!empty($request->publicacao)) {
+            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
+        } 
+        $processo->save();
+
+        $processos = Processo::all();
+        
+        $request->session()->flash('alert-success', 'Processo Seletivo alterado com sucesso!');
+
+        return view('processos.index', compact('request', 'processos'));
     }
 
     /**
@@ -80,8 +143,14 @@ class ProcessoController extends Controller
      * @param  \App\Processo  $processo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Processo $processo)
+    public function destroy(Request $request, Processo $processo)
     {
-        //
+        $processo->delete();
+
+        $processos = Processo::all();
+
+        $request->session()->flash('alert-danger', 'Processo Seletivo apagado!');
+
+        return view('processos.index', compact('processos'));
     }
 }

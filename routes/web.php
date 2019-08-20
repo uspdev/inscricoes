@@ -19,6 +19,9 @@ Route::get('/', function () {
 // Processos
 Route::resource('/processos', 'ProcessoController');
 
+// Programas
+Route::resource('/programas', 'ProgramaController'); 
+
 // Autenticação Laravel
 Auth::routes();
 
