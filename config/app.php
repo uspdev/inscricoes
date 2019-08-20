@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => config('ppgselecao.sisTimeZone'),
 
     /*
     |--------------------------------------------------------------------------

@@ -32,7 +32,25 @@
             <tr>
                 <th scope="col">Publicação</th>
                 <td>{{ ($processo->publicacao !== null) ? Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y H:i') : '' }}</td>
-            </tr>            
+            </tr>
+            <tr>
+                <th scope="col">Edital</th>
+                <td>Link para o edital</td>
+            </tr> 
+            @if ($processo->status == 'Publicado')
+                @if (Carbon\Carbon::parse($processo->publicacao)->isPast())
+                    @if (Carbon\Carbon::parse($processo->inicio)->isPast())
+                        @if (!Carbon\Carbon::parse($processo->fim)->isPast())
+            <tr>
+                <td colspan="2">
+                    <button type="button" class="btn btn-info btn" title="Inscreva-se" onclick="">
+                        <i class="material-icons">done</i> Inscreva-se</button>
+                </td>
+            </tr>
+                        @endif
+                    @endif
+                @endif
+            @endif    
         </tbody>
     </table>
 </div>
