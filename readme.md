@@ -21,6 +21,7 @@ php artisan vendor:publish --provider="Uspdev\UspTheme\ServiceProvider" --tag=co
 cp .env.example .env
 ```
 #### Altere o arquivo .env com as devidas credenciais
+#### Configure config/ppgselecao.php
 ```bash
 php artisan key:generate
 php artisan migrate
