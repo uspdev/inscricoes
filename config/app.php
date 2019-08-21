@@ -67,7 +67,11 @@ return [
     |
     */
 
-    'timezone' => config('ppgselecao.sisTimeZone'),
+    /**
+     * Recomendamos deixar este timezone para que o sistema assuma o horário de Brasília
+     * Isso é importante para abertura e fechamento das inscrições nos Processos Seletivos
+     * */ 
+    'timezone' => env('APP_TIMEZONE'),
 
     /*
     |--------------------------------------------------------------------------
