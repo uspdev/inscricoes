@@ -55,9 +55,6 @@ class ProcessoController extends Controller
         $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
         $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
         $processo->status       = $request->status;
-        if (!empty($request->publicacao)) {
-            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
-        } 
         $processo->save();
 
         $processos = Processo::all();
@@ -125,9 +122,6 @@ class ProcessoController extends Controller
         $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
         $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
         $processo->status       = $request->status;
-        if (!empty($request->publicacao)) {
-            $processo->publicacao   = Carbon::createFromFormat('d/m/Y H:i', $request->publicacao . ' ' . $request->publicacaoTime)->format('Y-m-d H:i');
-        } 
         $processo->save();
 
         $processos = Processo::all();

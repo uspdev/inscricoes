@@ -21,23 +21,17 @@
                 <th scope="col">Título</th>
                 <th scope="col">Níveis</th>
                 <th scope="col">Status</th>
-                <th scope="col">Publicação</th>
                 <th scope="col">Ações</th>
             </tr>
         </thead>
         <tbody>
         @foreach ($processos as $processo)
+            @if ($processo->status == 'Publicado' or Auth::check())
             <tr>
                 <th scope="row">{{ $processo->id }}</th>
                 <td>{{ $processo->titulo }}</td>
                 <td>{{ $processo->niveis }}</td>
                 <td>{{ $processo->status }}</td>
-                @if ($processo->status == 'Publicado')
-                <td>{{ Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y') }} 
-                    às {{ Carbon\Carbon::parse($processo->publicacao)->format('H:i') }}</td> 
-                @else
-                <td>&nbsp;</td> 
-                @endif
                 <td>
                     @auth
                     <form method="POST" id="processo{{ $processo->id }}" action="/processos/{{ $processo->id }}">
@@ -55,6 +49,7 @@
                     @endauth
                 </td>                
             </tr>
+            @endif
         @endforeach
         </tbody>
     </table>
