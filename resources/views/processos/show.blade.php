@@ -30,10 +30,6 @@
                 <td>{{ $processo->status }}</td>
             </tr>            
             <tr>
-                <th scope="col">Publicação</th>
-                <td>{{ ($processo->publicacao !== null) ? Carbon\Carbon::parse($processo->publicacao)->format('d/m/Y H:i') : '' }}</td>
-            </tr>
-            <tr>
                 <th scope="col">Edital</th>
                 <td>Link para o edital</td>
             </tr> 

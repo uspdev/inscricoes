@@ -81,16 +81,7 @@
                 <label class="form-check-label" for="status"> Concluido</label>
             </div>
         </fieldset>
-    </div>   
-    <div class="form-group row px-3">
-        <label for="inicio" class="col-form-label col1">Publicação</label>
-        <div class="col1 form-inline px-3">
-            <input type="text" class="form-control form-control-sm datepicker mr-3" id="publicacao" name="publicacao" placeholder="dd/mm/aaaa" 
-                    pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$">
-            <input type="text" class="form-control form-control-sm" id="publicacaoTime" name="publicacaoTime" placeholder="hh:mm" 
-                    pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]">
-        </div>
-    </div>    
+    </div>       
     <div class="form-group row p-3">
         <button type="submit" class="btn btn-info" title="Salvar Novo Processo Seletivo">Salvar</button>
     </div>
