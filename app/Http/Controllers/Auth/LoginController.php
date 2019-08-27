@@ -59,6 +59,7 @@ class LoginController extends Controller
             $user->id = $userSenhaUnica->codpes;
             $user->email = $userSenhaUnica->email;
             $user->name = $userSenhaUnica->nompes;
+            $user->codpes = $userSenhaUnica->codpes;
             $user->save();
         } else {
             # se o usuário EXISTE local
@@ -66,6 +67,7 @@ class LoginController extends Controller
             $user->id = $userSenhaUnica->codpes;
             $user->email = $userSenhaUnica->email;
             $user->name = $userSenhaUnica->nompes;
+            $user->codpes = $userSenhaUnica->codpes;
             $user->save(); 
         }
 
