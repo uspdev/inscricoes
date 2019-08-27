@@ -14,7 +14,7 @@ class AddCodpes extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('codpes')->nullable();    
+            $table->integer('codpes')->unique()->nullable();    
         });
     }
 
