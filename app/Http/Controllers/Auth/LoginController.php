@@ -51,21 +51,21 @@ class LoginController extends Controller
         // aqui vc pode inserir o usuário no banco de dados local, fazer o login etc.
 
         # busca o usuário local
-        $user = User::find($userSenhaUnica->codpes);
+        $user = User::where('codpes', $userSenhaUnica->codpes)->first();
 
 		# se o usuário local NÃO EXISTE, cadastra
         if (is_null($user)) {
             $user = new User;
-            $user->id = $userSenhaUnica->codpes;
             $user->email = $userSenhaUnica->email;
             $user->name = $userSenhaUnica->nompes;
+            $user->codpes = $userSenhaUnica->codpes;
             $user->save();
         } else {
             # se o usuário EXISTE local
             # atualiza os dados
-            $user->id = $userSenhaUnica->codpes;
             $user->email = $userSenhaUnica->email;
             $user->name = $userSenhaUnica->nompes;
+            $user->codpes = $userSenhaUnica->codpes;
             $user->save(); 
         }
 
