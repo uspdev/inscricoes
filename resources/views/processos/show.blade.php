@@ -27,26 +27,24 @@
             </tr>
             <tr>
                 <th scope="col">Status</th>
-                <td>{{ $processo->status }}</td>
+            <td>{{ $processo->status }}</td>
             </tr>            
             <tr>
                 <th scope="col">Edital</th>
                 <td>Link para o edital</td>
             </tr> 
             @if ($processo->status == 'Publicado')
-                @if (Carbon\Carbon::parse($processo->publicacao)->isPast())
-                    @if (Carbon\Carbon::parse($processo->inicio)->isPast())
-                        @if (!Carbon\Carbon::parse($processo->fim)->isPast())
+                @if (Carbon\Carbon::parse($processo->inicio)->isPast())
+                    @if (!Carbon\Carbon::parse($processo->fim)->isPast())
             <tr>
                 <td colspan="2">
                     <button type="button" class="btn btn-info btn" title="Inscreva-se" onclick="">
                         <i class="material-icons">done</i> Inscreva-se</button>
                 </td>
             </tr>
-                        @endif
                     @endif
                 @endif
-            @endif    
+            @endif  
         </tbody>
     </table>
 </div>
