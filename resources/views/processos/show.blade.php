@@ -27,12 +27,7 @@
             </tr>
             <tr>
                 <th scope="col">Status</th>
-            <td>
-                {{ $processo->status }} 
-                @if ($processo->status == 'Publicado')
-                    em {{ Carbon\Carbon::parse($processo->updated_at)->format('d/m/Y H:i') }}
-                @endif
-            </td>
+            <td>{{ $processo->status }}</td>
             </tr>            
             <tr>
                 <th scope="col">Edital</th>

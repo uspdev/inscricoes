@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Uspdev\Replicado\Connection; 
 use Uspdev\Replicado\Posgraduacao; 
-use Spatie\Activitylog\Models\Activity;
 
 class ProcessoController extends Controller
 {
@@ -57,8 +56,6 @@ class ProcessoController extends Controller
         $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
         $processo->status       = $request->status;
         $processo->save();
-
-        $activity = Activity::all()->last();
 
         $processos = Processo::all();
         
@@ -127,8 +124,6 @@ class ProcessoController extends Controller
         $processo->status       = $request->status;
         $processo->save();
 
-        $activity = Activity::all()->last();
-
         $processos = Processo::all();
         
         $request->session()->flash('alert-success', 'Processo Seletivo alterado com sucesso!');
@@ -145,8 +140,6 @@ class ProcessoController extends Controller
     public function destroy(Request $request, Processo $processo)
     {
         $processo->delete();
-
-        $activity = Activity::all()->last();
 
         $processos = Processo::all();
 

@@ -9,7 +9,7 @@ class Processo extends Model
 {
     use LogsActivity;
 
-    protected $fillable = ['updated_at'];
+    protected $fillable = ['status', 'updated_at'];
     
-    protected static $logAttributes = ['updated_at'];
+    protected static $logAttributes = ['status', 'updated_at'];
 }
