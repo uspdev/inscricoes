@@ -49,12 +49,13 @@ class ProcessoController extends Controller
     public function store(Request $request)
     {
         $processo = new Processo;
-        $processo->titulo       = $request->titulo;
-        $processo->codcur       = $request->codcur;
-        $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
-        $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
-        $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
-        $processo->status       = $request->status;
+        $processo->titulo           = $request->titulo;
+        $processo->codcur           = $request->codcur;
+        $processo->inicio           = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
+        $processo->fim              = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
+        $processo->niveis           = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        $processo->status           = $request->status;
+        $processo->data_elaborado   = Carbon::now()->format('Y-m-d H:i');
         $processo->save();
 
         $processos = Processo::all();
@@ -121,6 +122,11 @@ class ProcessoController extends Controller
         $processo->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
         $processo->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
         $processo->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
+        if ($processo->status != $request->status and $request->status == 'Publicado') {
+            $processo->data_publicado = Carbon::now()->format('Y-m-d H:i');
+        } elseif ($processo->status != $request->status and $request->status == 'Concluido') {
+            $processo->data_concluido = Carbon::now()->format('Y-m-d H:i');
+        }       
         $processo->status       = $request->status;
         $processo->save();
 
