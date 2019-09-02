@@ -55,7 +55,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="niveis" class="col-form-label col1 px-3">Níveis</label>
+        <label for="niveis" class="col-form-label col1 px-3">Níveis</label> 
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="niveisME" id="niveisME" value="ME" 
                 {{ (strpos($processo->niveis, 'ME') !== false) ? 'checked' : '' }}>
@@ -64,7 +64,7 @@
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="niveisDO" id="niveisDO" value="DO" 
                 {{ (strpos($processo->niveis, 'DO') !== false) ? 'checked' : '' }}>
-            <label class="form-check-label" for="niveisDO"> Doutorado</label>
+            <label class="form-check-label" for="niveisDO"> Doutorado</label> 
         </div>
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="niveisDD" id="niveisDD" value="DD" 

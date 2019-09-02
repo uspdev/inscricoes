@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="niveis" class="col-form-label col1 px-3">Níveis</label>
+        <label for="niveis" class="col-form-label col1 px-3">Níveis</label> 
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="checkbox" name="niveisME" id="niveisME" value="ME">
             <label class="form-check-label" for="niveisME"> Mestrado</label>
@@ -62,7 +62,7 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="status" class="col-form-label col1 px-3">Status</label>
+        <label for="status" class="col-form-label col1 px-3">Status</label> 
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" id="status" name="status" value="Em elaboração" checked>
             <label class="form-check-label" for="status"> Em elaboração</label>
