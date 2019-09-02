@@ -10,16 +10,12 @@ Utilizamos a [PSR-2](https://www.php-fig.org/psr/psr-2/) para padrões de projet
 
 ### Pré-requisitos
 
-php7+, laravel5+, mysql5.7+
+php7+, php-sybase, laravel5+, mysql5.7+
 
 ### Instalando
 
 ```bash
 composer install
-php artisan vendor:publish --provider="Uspdev\UspTheme\ServiceProvider" --tag="assets" --force
-php artisan vendor:publish --provider="Uspdev\UspTheme\ServiceProvider" --tag="config"
-php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="migrations"
-php artisan vendor:publish --provider="Spatie\Activitylog\ActivitylogServiceProvider" --tag="config"
 cp .env.example .env
 ```
 #### Altere o arquivo .env com as devidas credenciais
