@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') {{ config('app.name') }} - {{ config('ppgselecao.sisDesc') }} @endsection
+@section('title') {{ config('app.name') }} - {{ config('inscricoes.sisDesc') }} @endsection
 
 @section('content')
 
@@ -14,7 +14,7 @@
             <tr>
                 <th scope="col">Programa</th>
                 <td>{{ App\Programa::where('codcur', $processo->codcur)->get()[0]['sglcur'] }}
-                    {{ Uspdev\Replicado\Posgraduacao::programas(config('ppgselecao.repUnd'), $processo->codcur)[0]['nomcur'] }}</td>
+                    {{ Uspdev\Replicado\Posgraduacao::programas(config('inscricoes.repUnd'), $processo->codcur)[0]['nomcur'] }}</td>
             </tr>
             <tr>
                 <th scope="col">Inscrições</th>
