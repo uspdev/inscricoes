@@ -19,7 +19,6 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Título</th>
-                <th scope="col">Níveis</th>
                 <th scope="col">Status</th>
                 <th scope="col">Ações</th>
             </tr>
@@ -30,7 +29,6 @@
             <tr>
                 <th scope="row">{{ $vaga->id }}</th>
                 <td>{{ $vaga->titulo }}</td>
-                <td>{{ $vaga->niveis }}</td>
                 <td>{{ $vaga->status }}</td>
                 <td>
                     @auth
