@@ -10,7 +10,7 @@ return [
     */
 
     /* Sistema */
-    'sisDesc'       => 'Sistema de gerenciamento de processos seletivos da Pós-Graduação', 
+    'sisDesc'       => 'Sistema de gerenciamento de inscrições', 
 
     /* Replicado */
     'repHost'   => env('REPLICADO_HOST'),
