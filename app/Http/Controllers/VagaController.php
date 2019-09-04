@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Vaga;
-use App\Programa;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Uspdev\Replicado\Connection; 
@@ -35,11 +34,9 @@ class VagaController extends Controller
      */
     public function create()
     {
-        $programas = Programa::all();
-
         $vagas = Vaga::all();
 
-        return view('vagas.create', compact('vagas', 'programas'));
+        return view('vagas.create', compact('vagas'));
     }
 
     /**
@@ -52,10 +49,8 @@ class VagaController extends Controller
     {
         $vaga = new Vaga;
         $vaga->titulo           = $request->titulo;
-        $vaga->codcur           = $request->codcur;
         $vaga->inicio           = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
         $vaga->fim              = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
-        $vaga->niveis           = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
         $vaga->status           = $request->status;
         $vaga->data_elaborado   = Carbon::now()->format('Y-m-d H:i');
         $vaga->save();
@@ -74,26 +69,8 @@ class VagaController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Vaga $vaga)
-    {
-        $niveis = explode(',', $vaga->niveis);
-        $arrNiveis = array();
-        foreach ($niveis as $nivel) {
-            switch ($nivel) {
-                case 'ME':
-                    array_push($arrNiveis, 'Mestrado');
-                    break;
-                case 'DO':
-                    array_push($arrNiveis, 'Doutorado');
-                    break;
-                case 'DD':
-                    array_push($arrNiveis, 'Doutorado Direto');
-                    break;    
-            }
-        }
-        
-        $niveis = implode(', ', $arrNiveis);
-        
-        return view('vagas.show', compact('vaga', 'niveis'));
+    {      
+        return view('vagas.show', compact('vaga'));
     }
 
     /**
@@ -104,10 +81,7 @@ class VagaController extends Controller
      */
     public function edit(Vaga $vaga)
     {
-        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
-        $programas = Programa::all();
-       
-        return view('vagas.edit', compact('vaga', 'programas', 'programasReplicado'));
+        return view('vagas.edit', compact('vaga'));
     }
 
     /**
@@ -120,10 +94,8 @@ class VagaController extends Controller
     public function update(Request $request, Vaga $vaga)
     {
         $vaga->titulo       = $request->titulo;
-        $vaga->codcur       = $request->codcur;
         $vaga->inicio       = Carbon::createFromFormat('d/m/Y H:i', $request->inicio . ' ' . $request->inicioTime)->format('Y-m-d H:i');
         $vaga->fim          = Carbon::createFromFormat('d/m/Y H:i', $request->fim . ' ' . $request->fimTime)->format('Y-m-d H:i');
-        $vaga->niveis       = implode(',', array_filter(array($request->niveisME, $request->niveisDO, $request->niveisDD)));
         if ($vaga->status != $request->status and $request->status == 'Publicado') {
             $vaga->data_publicado = Carbon::now()->format('Y-m-d H:i');
         } elseif ($vaga->status != $request->status and $request->status == 'Concluido') {

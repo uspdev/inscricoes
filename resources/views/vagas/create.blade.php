@@ -17,20 +17,6 @@
         </div>
     </div>
     <div class="form-group row">
-        <label for="codcur" class="col-form-label col1 px-3">Programa</label>
-        <div class="col1">
-            <select class="form-control form-control-sm" id="codcur" name="codcur" required>
-                @foreach ($programas as $programa)
-                <option value="{{ $programa['codcur'] }}">{{ $programa['sglcur'] }} - {{ $programa['nomcur'] }}</option>
-                @endforeach
-            </select>
-        </div>
-        <div class="col1 px-3">
-            <button type="button" class="btn btn-info btn-sm" title="Novo Programa de Pós-Graduação" 
-                onclick="location.href='/programas/create';"><i class="material-icons md-18">add_circle_outline</i></button></button>
-        </div>
-    </div>
-    <div class="form-group row">
         <label for="inicio" class="col-form-label col1 px-3">Inscrições de</label>
         <div class="col1 form-inline">
             <input type="text" class="form-control form-control-sm datepicker mr-3" id="inicio" name="inicio" placeholder="dd/mm/aaaa" 
@@ -44,21 +30,6 @@
                 pattern="^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$" required> 
             <input type="text" class="form-control form-control-sm" id="fimTime" name="fimTime" placeholder="hh:mm" 
                 pattern="([01]?[0-9]|2[0-3]):[0-5][0-9]" required>
-        </div>
-    </div>
-    <div class="form-group row">
-        <label for="niveis" class="col-form-label col1 px-3">Níveis</label> 
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="niveisME" id="niveisME" value="ME">
-            <label class="form-check-label" for="niveisME"> Mestrado</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="niveisDO" id="niveisDO" value="DO">
-            <label class="form-check-label" for="niveisDO"> Doutorado</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="checkbox" name="niveisDD" id="niveisDD" value="DD">
-            <label class="form-check-label" for="niveisDD"> Doutorado Direto</label>
         </div>
     </div>
     <div class="form-group row">
