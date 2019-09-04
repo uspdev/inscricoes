@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Programa;
-use App\Processo;
+use App\Vaga;
 use Illuminate\Http\Request;
 use Uspdev\Replicado\Connection; 
 use Uspdev\Replicado\Posgraduacao; 
@@ -53,11 +53,11 @@ class ProgramaController extends Controller
         $programa->save();
 
         $programas = Programa::all();
-        $processos = Processo::all();
+        $vagas = Vaga::all();
 
         $request->session()->flash('alert-success', 'Programa cadastrado com sucesso!');
 
-        return view('processos.create', compact('request', 'programas', 'processos'));
+        return view('vagas.create', compact('request', 'programas', 'vagas'));
     }
 
     /**
