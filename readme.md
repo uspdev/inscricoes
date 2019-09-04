@@ -1,6 +1,6 @@
-# ppgselecao
+# inscricoes
 
-Sistema de gerenciamento de processos seletivos da Pós-Graduação
+Sistema de gerenciamento de inscrições
 
 ## Começando
 
@@ -19,7 +19,7 @@ composer install
 cp .env.example .env
 ```
 #### Altere o arquivo .env com as devidas credenciais
-#### Configure config/ppgselecao.php
+#### Configure config/inscricoes.php
 ```bash
 php artisan key:generate
 php artisan migrate
