@@ -6,20 +6,20 @@
 
 @include('flash')
 
-<h5>{{ $processo->titulo }}</h5>
+<h5>{{ $vaga->titulo }}</h5>
 
 <div class="border border-info rounded p-3 mt-3">
     <table class="table table-striped table-bordered mt-3">
         <tbody>
             <tr>
                 <th scope="col">Programa</th>
-                <td>{{ App\Programa::where('codcur', $processo->codcur)->get()[0]['sglcur'] }}
-                    {{ Uspdev\Replicado\Posgraduacao::programas(config('inscricoes.repUnd'), $processo->codcur)[0]['nomcur'] }}</td>
+                <td>{{ App\Programa::where('codcur', $vaga->codcur)->get()[0]['sglcur'] }}
+                    {{ Uspdev\Replicado\Posgraduacao::programas(config('inscricoes.repUnd'), $vaga->codcur)[0]['nomcur'] }}</td>
             </tr>
             <tr>
                 <th scope="col">Inscrições</th>
-                <td>de {{ Carbon\Carbon::parse($processo->inicio)->format('d/m/Y H:i') }} à 
-                    {{ Carbon\Carbon::parse($processo->fim)->format('d/m/Y H:i') }}</td>
+                <td>de {{ Carbon\Carbon::parse($vaga->inicio)->format('d/m/Y H:i') }} à 
+                    {{ Carbon\Carbon::parse($vaga->fim)->format('d/m/Y H:i') }}</td>
             </tr>
             <tr>
                 <th scope="col">Níveis</th>
@@ -28,11 +28,11 @@
             <tr>
                 <th scope="col">Status</th>
             <td>
-                {{ $processo->status }}
-                @if ($processo->status == 'Publicado')
-                    em {{ Carbon\Carbon::parse($processo->data_publicado)->format('d/m/Y H:i') }}
-                @elseif ($processo->status == 'Concluido')
-                    em {{ Carbon\Carbon::parse($processo->data_concluido)->format('d/m/Y H:i') }}
+                {{ $vaga->status }}
+                @if ($vaga->status == 'Publicado')
+                    em {{ Carbon\Carbon::parse($vaga->data_publicado)->format('d/m/Y H:i') }}
+                @elseif ($vaga->status == 'Concluido')
+                    em {{ Carbon\Carbon::parse($vaga->data_concluido)->format('d/m/Y H:i') }}
                 @endif
             </td>
             </tr>            
@@ -40,9 +40,9 @@
                 <th scope="col">Edital</th>
                 <td>Link para o edital</td>
             </tr> 
-            @if ($processo->status == 'Publicado')
-                @if (Carbon\Carbon::parse($processo->inicio)->isPast())
-                    @if (!Carbon\Carbon::parse($processo->fim)->isPast())
+            @if ($vaga->status == 'Publicado')
+                @if (Carbon\Carbon::parse($vaga->inicio)->isPast())
+                    @if (!Carbon\Carbon::parse($vaga->fim)->isPast())
             <tr>
                 <td colspan="2">
                     <button type="button" class="btn btn-info btn" title="Inscreva-se" onclick="">

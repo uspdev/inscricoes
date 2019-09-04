@@ -6,14 +6,14 @@
 
 @include('flash')
 
-<h5>Novo Processo Seletivo</h5>
+<h5>Nova Vaga</h5>
 
-<form method="POST" action="/processos" class="border border-info rounded p-3">
+<form method="POST" action="/vagas" class="border border-info rounded p-3">
     {{ csrf_field() }}  
     <div class="form-group row">
         <label for="titulo" class="col-form-label col1 px-3">Título</label>
         <div class="w-75">
-            <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título do Processo Seletivo" required>
+            <input type="text" class="form-control form-control-sm" id="titulo" name="titulo" placeholder="Título da Vaga" required>
         </div>
     </div>
     <div class="form-group row">
@@ -77,7 +77,7 @@
         </div>
     </div>       
     <div class="form-group row px-3">
-        <button type="submit" class="btn btn-info" title="Salvar Novo Processo Seletivo">Salvar</button>
+        <button type="submit" class="btn btn-info" title="Salvar Nova Vaga">Salvar</button>
     </div>
 </form>
 @endsection
