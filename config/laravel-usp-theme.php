@@ -8,16 +8,8 @@ return [
     'login_url' => '/senhaunica',
     'menu' => [
         [
-            'text' => 'Processos',
+            'text' => 'Vagas',
             'url'  => '/processos',
-        ],
-        [
-            'text' => 'Convocações',
-            'url'  => '/convocacoes',
-        ],
-        [
-            'text' => 'Calendário',
-            'url'  => '/calendario',
         ],
     ]
 ];
