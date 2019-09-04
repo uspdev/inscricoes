@@ -9,7 +9,7 @@ return [
     'menu' => [
         [
             'text' => 'Vagas',
-            'url'  => '/processos',
+            'url'  => '/vagas',
         ],
     ]
 ];
