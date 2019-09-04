@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class DropColumnCodcur extends Migration
+class DropColumnNiveis extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class DropColumnCodcur extends Migration
     public function up()
     {
         Schema::table('vagas', function (Blueprint $table) {
-            $table->dropColumn('codcur');
+            $table->dropColumn('niveis');
         });
     }
 
@@ -26,7 +26,7 @@ class DropColumnCodcur extends Migration
     public function down()
     {
         Schema::table('vagas', function (Blueprint $table) {
-            $table->integer('codcur');
+            $table->integer('niveis');
         });
     }
 }
