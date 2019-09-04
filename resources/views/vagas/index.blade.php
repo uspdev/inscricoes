@@ -10,7 +10,7 @@
 
 @auth
 <button type="button" class="btn btn-info" title="Nova Vaga"
-    onclick="location.href='/vagas/create';">Novo</button>
+    onclick="location.href='/vagas/create';">Nova</button>
 @endauth
 
 <div class="border border-info rounded p-3 mt-3">

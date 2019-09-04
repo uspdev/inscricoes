@@ -35,9 +35,11 @@ class VagaController extends Controller
      */
     public function create()
     {
+        $programas = Programa::all();
+
         $vagas = Vaga::all();
 
-        return view('vagas.create', compact('vagas'));
+        return view('vagas.create', compact('vagas', 'programas'));
     }
 
     /**
