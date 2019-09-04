@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
 
-class Processo extends Model
+class Vaga extends Model
 {
     use LogsActivity;
 

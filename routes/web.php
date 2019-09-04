@@ -16,8 +16,8 @@ Route::get('/', function () {
     return view('master');
 });
 
-// Processos
-Route::resource('/processos', 'ProcessoController');
+// Vagas
+Route::resource('/vagas', 'VagaController');
 
 // Programas
 Route::resource('/programas', 'ProgramaController'); 
