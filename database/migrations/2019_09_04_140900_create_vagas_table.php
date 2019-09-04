@@ -15,6 +15,15 @@ class CreateVagasTable extends Migration
     {
         Schema::create('vagas', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->integer('codcur');
+            $table->string('titulo');
+            $table->dateTime('inicio');
+            $table->dateTime('fim');
+            $table->string('niveis');
+            $table->string('status');
+            $table->dateTime('data_elaborado')->nullable();
+            $table->dateTime('data_publicado')->nullable();
+            $table->dateTime('data_concluido')->nullable();
             $table->timestamps();
         });
     }
