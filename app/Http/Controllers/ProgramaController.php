@@ -32,13 +32,13 @@ class ProgramaController extends Controller
      */
     public function create()
     {
-        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
         $programas = Programa::all();
         
         return view('programas.create', compact('programasReplicado', 'programas'));
     }
 
-    /**$programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+    /**$programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -79,7 +79,7 @@ class ProgramaController extends Controller
      */
     public function edit(Programa $programa)
     {
-        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
 
         return view('programas.edit', compact('programasReplicado', 'programa'));
     }
@@ -98,7 +98,7 @@ class ProgramaController extends Controller
         $programa->sglcur       = $request->sglcur;
         $programa->save();
 
-        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
         $programas = Programa::all();
 
         $request->session()->flash('alert-success', 'Programa alterado com sucesso!');
@@ -116,7 +116,7 @@ class ProgramaController extends Controller
     {
         $programa->delete();
         
-        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
         $programas = Programa::all();
 
         $request->session()->flash('alert-danger', 'Programa apagado!');

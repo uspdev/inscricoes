@@ -1,6 +1,6 @@
 @extends('laravel-usp-theme::master')
 
-@section('title') {{ config('app.name') }} - {{ config('ppgselecao.sisDesc') }} @endsection
+@section('title') {{ config('app.name') }} - {{ config('inscricoes.sisDesc') }} @endsection
 
 @section('content')
 

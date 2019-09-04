@@ -102,7 +102,7 @@ class ProcessoController extends Controller
      */
     public function edit(Processo $processo)
     {
-        $programasReplicado = Posgraduacao::programas(config('ppgselecao.repUnd'));
+        $programasReplicado = Posgraduacao::programas(config('inscricoes.repUnd'));
         $programas = Programa::all();
        
         return view('processos.edit', compact('processo', 'programas', 'programasReplicado'));
